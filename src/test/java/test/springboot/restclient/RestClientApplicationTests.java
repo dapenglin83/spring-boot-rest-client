@@ -32,27 +32,27 @@ class RestClientApplicationTests {
     @Test
     public void shouldReturnSameCodeSameName() throws Exception {
         this.mockMvc.perform(get("/sgx/info/{code}", DBS_CODE)).andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.fullName").value(DBS_NAME))
-            .andExpect(jsonPath("$.ibmCode").value(DBS_IBM_CODE));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.fullName").value(DBS_NAME))
+                .andExpect(jsonPath("$.ibmCode").value(DBS_IBM_CODE));
     }
 
     @Test
     public void shouldReturnLastPriceGreaterThan25() throws Exception {
         this.mockMvc.perform(get("/sgx/price/{code}", DBS_CODE)).andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.last", is(greaterThan(25.0))));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.last", is(greaterThan(25.0))));
     }
 
     @Test
     public void shouldReturn20ElementsAndWithSameName() throws Exception {
         this.mockMvc.perform(get("/sgx/corporateaction/{code}", DBS_IBM_CODE)).andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$", hasSize(20)))
-            .andExpect(jsonPath("$[0].name").value(DBS_NAME))
-            .andExpect(jsonPath("$[1].name").value(DBS_NAME))
-            .andExpect(jsonPath("$[3].name").value(DBS_NAME))
-            .andExpect(jsonPath("$[5].name").value(DBS_NAME))
-            .andExpect(jsonPath("$[10].name").value(DBS_NAME));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(20)))
+                .andExpect(jsonPath("$[0].name").value(DBS_NAME))
+                .andExpect(jsonPath("$[1].name").value(DBS_NAME))
+                .andExpect(jsonPath("$[3].name").value(DBS_NAME))
+                .andExpect(jsonPath("$[5].name").value(DBS_NAME))
+                .andExpect(jsonPath("$[10].name").value(DBS_NAME));
     }
 }

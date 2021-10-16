@@ -45,8 +45,8 @@ public class WebMockTest {
         StockInfo info = objectMapper.readValue(DBS_INFO_RESP, StockInfo.class);
         when(service.getStockInfo(DBS_CODE)).thenReturn(info);
         this.mockMvc.perform(get("/sgx/info/{code}", DBS_CODE)).andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().json(DBS_INFO_RESP));
+                .andExpect(status().isOk())
+                .andExpect(content().json(DBS_INFO_RESP));
     }
 
     @Test
@@ -54,8 +54,8 @@ public class WebMockTest {
         Quote quote = objectMapper.readValue(DBS_PRICE_RESP, Quote.class);
         when(service.getPrice(DBS_CODE, "b,s,o,h,l,lt")).thenReturn(quote);
         this.mockMvc.perform(get("/sgx/price/{code}", DBS_CODE)).andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().json(DBS_PRICE_RESP));
+                .andExpect(status().isOk())
+                .andExpect(content().json(DBS_PRICE_RESP));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class WebMockTest {
                 new TypeReference<List<CorporateAction>>(){});
         when(service.getCorporateActions(DBS_IBM_CODE, 0, 20, "id,anncType,datePaid,exDate,name,particulars,recDate")).thenReturn(corporateActions);
         this.mockMvc.perform(get("/sgx/corporateaction/{code}", DBS_IBM_CODE)).andDo(print())
-            .andExpect(status().isOk())
-            .andExpect(content().json(DBS_CORPORATE_ACTION_RESP));
+                .andExpect(status().isOk())
+                .andExpect(content().json(DBS_CORPORATE_ACTION_RESP));
     }
 }
